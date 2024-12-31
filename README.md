@@ -26,7 +26,7 @@ Este paquete de Laravel proporciona una manera sencilla de obtener los tipos de 
 ## Requisitos
 
 *   PHP 8.2 o superior
-*   Laravel 10 o superior
+*   Laravel 11 o superior
 
 ## Instalación
 
