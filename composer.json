@@ -3,10 +3,14 @@
     "description": "Laravel package for fetching and managing Venezuelan foreign exchange rates",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Laymont\\VenezuelanForeignExchanges\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laymont\\VenezuelanForeignExchanges\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",
@@ -19,23 +23,33 @@
     ],
     "require": {
         "php": "^8.3",
-        "illuminate/support": "^13.0",
-        "illuminate/http": "^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/http": "^12.0|^13.0",
         "symfony/css-selector": "^7.2",
         "symfony/dom-crawler": "^7.2",
         "guzzlehttp/guzzle": "^7.9"
     },
     "require-dev": {
         "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.13",
-        "phpunit/phpunit": "^11.5",
-        "orchestra/testbench": "^10.0"
+        "pestphp/pest": "^3.0",
+        "phpunit/phpunit": "^11.0",
+        "orchestra/testbench": "^10.0|^11.0"
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Laymont\\VenezuelanForeignExchanges\\Providers\\VenezuelanForeignExchangesServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "VenezuelanForeignExchanges": "Laymont\\VenezuelanForeignExchanges\\Facades\\VenezuelanForeignExchanges"
+            }
         }
-    }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
