@@ -5,12 +5,11 @@ namespace Laymont\VenezuelanForeignExchanges\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laymont\VenezuelanForeignExchanges\Concerns\BcvCurrencies;
+use Laymont\VenezuelanForeignExchanges\Facades\VenezuelanForeignExchanges;
 use Laymont\VenezuelanForeignExchanges\Services\BcvService;
+
 class VenezuelanForeignExchangesServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         $this->app->bind(BcvCurrencies::class, function ($app) {
@@ -19,11 +18,9 @@ class VenezuelanForeignExchangesServiceProvider extends ServiceProvider
         $this->app->bind(BcvService::class, function ($app) {
             return new BcvService($app->make(BcvCurrencies::class));
         });
+        $this->app->alias(BcvService::class, 'venezuelanforeignexchanges');
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -34,9 +31,6 @@ class VenezuelanForeignExchangesServiceProvider extends ServiceProvider
         $this->registerRoutes();
     }
 
-    /**
-     * @return void
-     */
     protected function registerRoutes(): void
     {
         Route::group($this->routeConfiguration(), function () {
@@ -44,9 +38,6 @@ class VenezuelanForeignExchangesServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * @return string[]
-     */
     protected function routeConfiguration(): array
     {
         return [
